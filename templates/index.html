@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid ">
+        <div class="d-flex justify-content-center jumbotron text-center mars-image" style="background-image: url('{{ mission_mars.Most_Recent_Mars_Image }}')">
+            <div class="light_background p-3 rounded">
+                <h1>Mission to Mars</h1>
+                <p> News. Images. Weather. Facts. Hemispheres.</p>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Mars Data!</a></p>
+            </div>
+        </div>
+        <div class="px-5">
+            <h2>Latest Mars News </h2>
+            <h4>{{ mission_mars.News_Title}}</h4>
+            <h5>{{ mission_mars.Paragraph_Text }}</h5>
+
+
+        </div>
+
+
+
+        <section class="container-fluid px-5 py-5">
+            <div class="row">
+                <div class="col-sm-9 mx-sm-auto">
+                    <div class="card">
+                        <h2 class="card-header bg-transparent ">Featured Mars Image </h2>
+
+                        <div class="card-body container">
+
+                            <div>
+                                <img class="card-img " src="{{ mission_mars.Most_Recent_Mars_Image }}" alt="Featured Mars Image ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card mb-4">
+                        <h5 class="card-header bg-transparent ">Current Weather on Mars</h5>
+
+                        <div class="card-body container">
+
+                            <div>
+                                {{ mission_mars.Mars_Weather }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-5">
+                        <h5>Mars Facts </h5>{{ mission_mars.Mars_Table | safe }}
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="container-fluid px-5 py-5">
+            <div class="row">
+
+                <div class="col-sm-10 mx-sm-auto">
+                    <div class="card mb-3">
+                        <div class="card-header bg-transparent">
+
+                            <h2 class="card-title text-center">Mars Hemispheres</h2>
+                        </div>
+
+                        <div class="card-body container">
+
+
+                            <div class="row text-center">
+                                {% for img in mission_mars.Mars_Hemispheres %}
+                                <div class="col-md-6 p-5 text-decoration-none">
+                                    <h4> {{img[ "image title"]}} </h4>
+                                    <img class="card-img" src={{img[ "image url"]}} alt="Mars Hemispheres Image">
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+    </div>
+</body>
+
+</html>
